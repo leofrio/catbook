@@ -1,12 +1,18 @@
 <h4 class="text-center">Login</h4>
-<form class="form mt-4" (ngSubmit)="login()">
+<form class="form mt-4" (ngSubmit)="login()" #loginForm="ngForm">
   <div class="form-group">
     <input
       class="form-control"
       placeholder="username"
       [(ngModel)]="userName"
       name="userName"
+      #userNameInput="ngModel"
+      required
     />
+    <app-message
+      *ngIf="userNameInput.invalid && userNameInput.touched"
+      message="username Required"
+    ></app-message>
   </div>
   <div class="form-group">
     <input
@@ -15,7 +21,20 @@
       placeholder="password"
       [(ngModel)]="password"
       name="password"
+      #passwordInput="ngModel"
+      required
     />
+    <app-message
+      *ngIf="passwordInput.invalid && passwordInput.touched"
+      message="password Required"
+    ></app-message>
   </div>
-  <button type="submit" class="btn btn-primary col-md-12">Login</button>
+  <button
+    type="submit"
+    class="btn btn-primary col-md-12"
+    [disabled]="loginForm.invalid"
+  >
+    Login
+  </button>
 </form>
+<p>not a user?<a [routerLink]="['signup']">Sign Up!</a></p>

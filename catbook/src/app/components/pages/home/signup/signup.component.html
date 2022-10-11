@@ -1,0 +1,92 @@
+<h4 class="text-center">Sing up now and show your cat to the world!</h4>
+<form class="form mt-4" [formGroup]="newUserForm" (submit)="signUp()">
+  <div class="form-group">
+    <input
+      placeholder="please type your email"
+      class="form-control"
+      formControlName="email"
+      name="email"
+      type="email"
+    />
+    <app-message
+      *ngIf="
+        newUserForm.get('email')?.errors?.['required'] &&
+        newUserForm.get('email')?.touched
+      "
+      message="email is required"
+    ></app-message>
+  </div>
+  <div class="form-group">
+    <input
+      placeholder="please type your full name"
+      class="form-control"
+      formControlName="fname"
+      name="fullName"
+    />
+    <app-message
+      *ngIf="
+        newUserForm.get('fname')?.errors?.['required'] &&
+        newUserForm.get('fname')?.touched
+      "
+      message="name is required"
+    ></app-message>
+  </div>
+  <div class="form-group">
+    <input
+      placeholder="please choose a username"
+      class="form-control"
+      formControlName="userName"
+      name="userName"
+    />
+    <app-message
+      *ngIf="
+        newUserForm.get('userName')?.errors?.['required'] &&
+        newUserForm.get('userName')?.touched
+      "
+      message="username is required"
+    ></app-message>
+  </div>
+  <div class="form-group">
+    <input
+      type="password"
+      placeholder="please type a password"
+      name="password"
+      formControlName="password"
+      class="form-control"
+    />
+    <app-message
+      *ngIf="
+        newUserForm.get('password')?.errors?.['required'] &&
+        newUserForm.get('password')?.touched
+      "
+      message="password is required"
+    ></app-message>
+  </div>
+  <div class="form-group">
+    <input
+      type="password"
+      placeholder="confirm your password"
+      name="passwordConfirm"
+      formControlName="passwordconf"
+      class="form-control"
+    />
+    <app-message
+      *ngIf="
+        newUserForm.get('passwordconf')?.errors?.['required'] &&
+        newUserForm.get('passwordconf')?.touched
+      "
+      message="password confirmation is required "
+    ></app-message>
+    <app-message
+      *ngIf="newUserForm.get('password')?.touched &&
+        newUserForm.get('passwordconf')?.touched &&
+        newUserForm.get('passwordconf')?.errors?.['notEqualPasswords'] &&
+        newUserForm.get('password')?.errors?.['notEqualPasswords'] "
+      message="passwords dont match!"
+    ></app-message>
+  </div>
+  <div class="d-grid">
+    <button type="submit" class="btn btn-primary">Sign Up!</button>
+  </div>
+</form>
+<p>Already a user?<a [routerLink]="['']">Login!</a></p>
