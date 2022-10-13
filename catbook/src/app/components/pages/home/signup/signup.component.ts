@@ -1,3 +1,4 @@
+import { UserExistsService } from './../../../../services/user-exists/user-exists.service';
 import { NewUser } from './../../../../models/new-user';
 import { SingupService } from './../../../../services/signup/singup.service';
 import { HttpClient } from '@angular/common/http';
@@ -17,7 +18,8 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private signUpService: SingupService
+    private signUpService: SingupService,
+    private userExistsService: UserExistsService
   ) {}
   newUserForm!: FormGroup;
   signUp(): void {
@@ -37,7 +39,11 @@ export class SignupComponent implements OnInit {
     this.newUserForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       fname: ['', [Validators.required, Validators.minLength(4)]],
-      userName: ['', [Validators.required]],
+      userName: [
+        '',
+        [Validators.required],
+        [this.userExistsService.userExists()],
+      ],
       password: ['', [Validators.required, this.checkPasswords]],
       passwordconf: ['', [Validators.required, this.checkPasswords]],
     });
