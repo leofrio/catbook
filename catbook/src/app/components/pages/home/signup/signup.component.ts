@@ -1,3 +1,4 @@
+import { map, Observable, Subject } from 'rxjs';
 import { UserExistsService } from './../../../../services/user-exists/user-exists.service';
 import { NewUser } from './../../../../models/new-user';
 import { SingupService } from './../../../../services/signup/singup.service';
@@ -5,8 +6,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
+  AsyncValidatorFn,
   FormBuilder,
   FormGroup,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,13 +21,12 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private signUpService: SingupService,
-    private userExistsService: UserExistsService
+    private signUpService: SingupService
   ) {}
   newUserForm!: FormGroup;
   signUp(): void {
     const newUser = this.newUserForm.getRawValue() as NewUser;
-    console.log(newUser);
+    this.signUpService.registerNewUser(newUser);
   }
   checkPasswords(control: AbstractControl): { [key: string]: boolean } | null {
     let passwordu = control.parent?.get('password')?.value;
@@ -35,6 +37,13 @@ export class SignupComponent implements OnInit {
     }
     return null;
   }
+  createValidator(signupService: SingupService): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<any> => {
+      return signupService
+        .verifyExistingUser(control.value)
+        .pipe(map((result: boolean) => (result ? { userExists: true } : null)));
+    };
+  }
   ngOnInit(): void {
     this.newUserForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -42,7 +51,7 @@ export class SignupComponent implements OnInit {
       userName: [
         '',
         [Validators.required],
-        [this.userExistsService.userExists()],
+        [this.createValidator(this.signUpService)],
       ],
       password: ['', [Validators.required, this.checkPasswords]],
       passwordconf: ['', [Validators.required, this.checkPasswords]],

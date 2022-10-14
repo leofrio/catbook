@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "userName": "alvaro",
+      "password": "12345678",
+      "fname": "alvaro",
+      "email": "alvaro@algumacoisa.com"
+    },
+    {
+      "userName": "leofrio",
+      "password": "12345678",
+      "fname": "leonardo",
+      "email": "leofrio1@gmail.com"
+    }
+  ],
+  "loggedUser": {}
+}

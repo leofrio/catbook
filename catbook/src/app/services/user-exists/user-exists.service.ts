@@ -1,4 +1,4 @@
-import { first, map, Observable, switchMap } from 'rxjs';
+import { first, map, Observable, switchMap, Subject, of } from 'rxjs';
 import { SingupService } from './../signup/singup.service';
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
@@ -8,6 +8,7 @@ import { AbstractControl } from '@angular/forms';
 export class UserExistsService {
   constructor(private signUpService: SingupService) {}
   userExists() {
+    let subject: Subject<any> = new Subject<any>();
     return (control: AbstractControl) => {
       return (
         control.valueChanges.pipe(

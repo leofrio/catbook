@@ -1,3 +1,4 @@
+import { throwError } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { authenticationModule } from 'src/app/services/authentication/authentication.module';
@@ -20,9 +21,13 @@ export class LoginComponent implements OnInit {
     console.log('login: ' + this.userName);
     console.log('password: ' + this.password);
     this.authService.authenticate(this.userName, this.password).subscribe(
-      () => {
-        console.log('sucessefully logged in!');
-        this.router.navigate(['animals']);
+      (req) => {
+        if (typeof req !== 'undefined') {
+          console.log(typeof req);
+          this.router.navigate(['animals']);
+        } else {
+          alert('invalid username or password');
+        }
       },
       (error) => {
         alert('invalid username or password');
