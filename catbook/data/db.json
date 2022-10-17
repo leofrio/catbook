@@ -11,6 +11,27 @@
       "password": "12345678",
       "fname": "leonardo",
       "email": "leofrio1@gmail.com"
+    },
+    {
+      "email": "duardo@hotmail.com",
+      "fname": "duardo",
+      "userName": "duardo",
+      "password": "123",
+      "passwordconf": "123"
+    },
+    {
+      "email": "leo@12123.com",
+      "fname": "dddasasdsaasdsasad",
+      "userName": "12312",
+      "password": "",
+      "passwordconf": ""
+    },
+    {
+      "email": "sadasda",
+      "fname": "asdasdas",
+      "userName": "asdasda",
+      "password": "",
+      "passwordconf": ""
     }
   ],
   "loggedUser": {}

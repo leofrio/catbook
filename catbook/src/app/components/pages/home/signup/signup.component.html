@@ -35,6 +35,10 @@
       "
       message="name is required"
     ></app-message>
+    <app-message
+      *ngIf="newUserForm.get('fname')?.touched && newUserForm.get('fname')?.errors?.['minlength']"
+      message="full name must have at least 4 digits"
+    ></app-message>
   </div>
   <div class="form-group">
     <input
@@ -86,16 +90,22 @@
       "
       message="password confirmation is required "
     ></app-message>
-    <app-message
-      *ngIf="newUserForm.get('password')?.touched &&
-        newUserForm.get('passwordconf')?.touched &&
-        newUserForm.get('passwordconf')?.errors?.['notEqualPasswords'] &&
-        newUserForm.get('password')?.errors?.['notEqualPasswords'] "
-      message="passwords dont match!"
-    ></app-message>
   </div>
+  <app-message
+    *ngIf="(newUserForm.get('password')?.touched || newUserForm.get('password')?.dirty)&&
+        (newUserForm.get('passwordconf')?.touched || newUserForm.get('passwordconf')?.dirty) &&
+        newUserForm.get('passwordconf')?.errors?.['notEqualPasswords'] &&
+        newUserForm.get('password')?.errors?.['notEqualPasswords']  "
+    message="passwords dont match!"
+  ></app-message>
   <div class="d-grid">
-    <button type="submit" class="btn btn-primary">Sign Up!</button>
+    <button
+      [disabled]="newUserForm.invalid"
+      type="submit"
+      class="btn btn-primary"
+    >
+      Sign Up!
+    </button>
   </div>
 </form>
 <p>Already a user?<a [routerLink]="['']">Login!</a></p>

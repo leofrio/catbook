@@ -13,6 +13,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import checkPasswords from './validators/checkPasswords.validator';
+import userAlreadyExists from './asyncValidators/userAlreadyExists.validator';
+import isFormInvalid from './validators/isFormInvalid.validator';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -23,38 +26,21 @@ export class SignupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private signUpService: SingupService
   ) {}
-  newUserForm!: FormGroup;
+
   signUp(): void {
     const newUser = this.newUserForm.getRawValue() as NewUser;
-    this.signUpService.registerNewUser(newUser);
-  }
-  checkPasswords(control: AbstractControl): { [key: string]: boolean } | null {
-    let passwordu = control.parent?.get('password')?.value;
-    console.log(passwordu);
-    let passwordconf = control.parent?.get('passwordconf')?.value;
-    if (passwordconf != passwordu || passwordu != passwordconf) {
-      return { notEqualPasswords: true };
-    }
-    return null;
-  }
-  createValidator(signupService: SingupService): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<any> => {
-      return signupService
-        .verifyExistingUser(control.value)
-        .pipe(map((result: boolean) => (result ? { userExists: true } : null)));
-    };
-  }
-  ngOnInit(): void {
-    this.newUserForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      fname: ['', [Validators.required, Validators.minLength(4)]],
-      userName: [
-        '',
-        [Validators.required],
-        [this.createValidator(this.signUpService)],
-      ],
-      password: ['', [Validators.required, this.checkPasswords]],
-      passwordconf: ['', [Validators.required, this.checkPasswords]],
+    this.signUpService.registerNewUser(newUser).subscribe((res) => {
+      console.log('user:');
+      console.log(res);
+      console.log(' was registered');
     });
   }
+  newUserForm: FormGroup = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    fname: ['', [Validators.required, Validators.minLength(4)]],
+    userName: ['', Validators.required, userAlreadyExists(this.signUpService)],
+    password: ['', [Validators.required, checkPasswords]],
+    passwordconf: ['', [Validators.required, checkPasswords]],
+  });
+  ngOnInit(): void {}
 }
