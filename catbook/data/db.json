@@ -32,6 +32,13 @@
       "userName": "asdasda",
       "password": "",
       "passwordconf": ""
+    },
+    {
+      "email": "1@1.com",
+      "fname": "212133",
+      "userName": "ripardo",
+      "password": "123",
+      "passwordconf": "123"
     }
   ],
   "loggedUser": {}
