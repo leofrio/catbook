@@ -1,3 +1,4 @@
+import { HeaderModule } from './components/header/header.module';
 import { HomeModule } from './components/pages/home/home.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -5,10 +6,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, HomeModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    HomeModule,
+    AppRoutingModule,
+    HttpClientModule,
+    HeaderModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,4 +1,4 @@
-import { NewUser } from './../../models/new-user';
+import { User } from '../../models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, Subject, Subscriber, throwError } from 'rxjs';
@@ -10,8 +10,8 @@ export class authenticationService {
   authenticate(userName: string, password: string): Observable<any> {
     let subject: Subject<any> = new Subject<any>();
     this.httpclient.get('http://localhost:3000/users').subscribe((res) => {
-      let users: NewUser[] = [];
-      users = res as NewUser[];
+      let users: User[] = [];
+      users = res as User[];
       for (let i of users) {
         if (userName === i.userName && password === i.password) {
           subject.next(

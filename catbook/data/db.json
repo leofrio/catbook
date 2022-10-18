@@ -18,12 +18,19 @@
       "userName": "arnaldo",
       "password": "123",
       "passwordconf": "123"
+    },
+    {
+      "email": "131212@1221.com21",
+      "fname": "dddasasdsaasdsasad",
+      "userName": "blurdinaldo",
+      "password": "123",
+      "passwordconf": "123"
     }
   ],
   "loggedUser": {
-    "userName": "arnaldo",
-    "password": "123",
-    "fname": "arnaldo",
-    "email": "21313@sdsad.com"
+    "userName": "leofrio",
+    "password": "12345678",
+    "fname": "leonardo",
+    "email": "leofrio1@gmail.com"
   }
 }

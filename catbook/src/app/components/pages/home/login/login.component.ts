@@ -1,3 +1,4 @@
+import { LocalstorageService } from './../../../../services/localstorage/localstorage.service';
 import { throwError } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   password: string = '';
   constructor(
     private authService: authenticationService,
-    private router: Router
+    private router: Router,
+    private localstorageService: LocalstorageService
   ) {}
 
   login(): void {
@@ -23,8 +25,8 @@ export class LoginComponent implements OnInit {
     this.authService.authenticate(this.userName, this.password).subscribe(
       (req) => {
         if (typeof req !== 'undefined') {
-          req.subscribe(() => {
-            console.log(req);
+          req.subscribe((reqaux: Object) => {
+            this.localstorageService.addLSToken('loggedUser', reqaux);
             this.router.navigate(['animals']);
           });
         } else {

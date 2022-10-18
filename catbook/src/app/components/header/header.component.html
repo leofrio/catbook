@@ -1,0 +1,17 @@
+<header class="sticky-top">
+  <nav class="navbar navbar-light bg-white">
+    <a class="navbar-brand">Catbook</a>
+    <div *ngIf="user$ | async as user">
+      <div *ngIf="user.fname; else notlogged">
+        <i class="fa fa-user-circle mr-1"></i>
+        <a class="mr-1">{{ user.fname }}</a>
+        <a (click)="logout()">Logout</a>
+      </div>
+    </div>
+  </nav>
+  <ng-template #notlogged>
+    <span class="navbar-text">
+      <a [routerLink]="['']">Login</a>
+    </span>
+  </ng-template>
+</header>

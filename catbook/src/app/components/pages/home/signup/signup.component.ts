@@ -1,5 +1,5 @@
 import { map, Observable, Subject } from 'rxjs';
-import { NewUser } from './../../../../models/new-user';
+import { User } from '../../../../models/user';
 import { SingupService } from './../../../../services/signup/singup.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
   ) {}
 
   signUp(): void {
-    const newUser = this.newUserForm.getRawValue() as NewUser;
+    const newUser = this.newUserForm.getRawValue() as User;
     this.signUpService.registerNewUser(newUser).subscribe((res) => {
       console.log('user:');
       console.log(res);

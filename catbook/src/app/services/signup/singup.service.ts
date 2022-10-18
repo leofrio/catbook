@@ -1,7 +1,7 @@
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NewUser } from 'src/app/models/new-user';
+import { User } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ import { NewUser } from 'src/app/models/new-user';
 export class SingupService {
   constructor(private httpClient: HttpClient) {}
 
-  registerNewUser(newUser: NewUser): Observable<any> {
+  registerNewUser(newUser: User): Observable<any> {
     return this.httpClient.post('http://localhost:3000/users', newUser);
   }
   verifyExistingUser(username: String): Observable<any> {
