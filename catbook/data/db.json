@@ -13,33 +13,17 @@
       "email": "leofrio1@gmail.com"
     },
     {
-      "email": "duardo@hotmail.com",
-      "fname": "duardo",
-      "userName": "duardo",
-      "password": "123",
-      "passwordconf": "123"
-    },
-    {
-      "email": "leo@12123.com",
-      "fname": "dddasasdsaasdsasad",
-      "userName": "12312",
-      "password": "",
-      "passwordconf": ""
-    },
-    {
-      "email": "sadasda",
-      "fname": "asdasdas",
-      "userName": "asdasda",
-      "password": "",
-      "passwordconf": ""
-    },
-    {
-      "email": "1@1.com",
-      "fname": "212133",
-      "userName": "ripardo",
+      "email": "21313@sdsad.com",
+      "fname": "arnaldo",
+      "userName": "arnaldo",
       "password": "123",
       "passwordconf": "123"
     }
   ],
-  "loggedUser": {}
+  "loggedUser": {
+    "userName": "arnaldo",
+    "password": "123",
+    "fname": "arnaldo",
+    "email": "21313@sdsad.com"
+  }
 }

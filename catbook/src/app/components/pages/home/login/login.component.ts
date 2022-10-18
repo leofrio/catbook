@@ -23,8 +23,10 @@ export class LoginComponent implements OnInit {
     this.authService.authenticate(this.userName, this.password).subscribe(
       (req) => {
         if (typeof req !== 'undefined') {
-          console.log(req);
-          this.router.navigate(['animals']);
+          req.subscribe(() => {
+            console.log(req);
+            this.router.navigate(['animals']);
+          });
         } else {
           alert('invalid username or password');
         }

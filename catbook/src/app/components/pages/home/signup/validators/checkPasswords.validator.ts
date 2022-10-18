@@ -1,11 +1,15 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  ValidationErrors,
+  ValidatorFn,
+  FormGroup,
+} from '@angular/forms';
 
 export default function checkPasswords(
-  control: AbstractControl<any, any>
+  formgroup: FormGroup
 ): ValidationErrors | null {
-  let passwordu = control.parent?.get('password')?.value;
-  console.log(passwordu);
-  let passwordconf = control.parent?.get('passwordconf')?.value;
+  let passwordu = formgroup.get('password')?.value ?? '';
+  let passwordconf = formgroup.get('passwordconf')?.value ?? '';
   if (passwordconf != passwordu || passwordu != passwordconf) {
     return { notEqualPasswords: true };
   }

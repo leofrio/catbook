@@ -55,7 +55,7 @@
       message="username is required"
     ></app-message>
     <app-message
-      *ngIf="newUserForm.get('userName')?.errors?.['userExists'] && newUserForm.get('userName')?.touched"
+      *ngIf="newUserForm.errors?.['userExists'] && newUserForm.get('userName')?.touched"
       message="That username is taken please try another one"
     ></app-message>
   </div>
@@ -73,6 +73,13 @@
         newUserForm.get('password')?.touched
       "
       message="password is required"
+    ></app-message>
+    <app-message
+      *ngIf="
+        newUserForm.errors?.['sameUserPassword'] &&
+        newUserForm.get('password')?.touched && newUserForm.get('userName')?.touched
+      "
+      message="your password cant be the same as your username!"
     ></app-message>
   </div>
   <div class="form-group">
@@ -92,10 +99,9 @@
     ></app-message>
   </div>
   <app-message
-    *ngIf="(newUserForm.get('password')?.touched || newUserForm.get('password')?.dirty)&&
-        (newUserForm.get('passwordconf')?.touched || newUserForm.get('passwordconf')?.dirty) &&
-        newUserForm.get('passwordconf')?.errors?.['notEqualPasswords'] &&
-        newUserForm.get('password')?.errors?.['notEqualPasswords']  "
+    *ngIf="newUserForm.get('password')?.touched &&
+        newUserForm.get('passwordconf')?.touched &&
+        newUserForm.errors?.['notEqualPasswords']"
     message="passwords dont match!"
   ></app-message>
   <div class="d-grid">

@@ -7,7 +7,7 @@ export default function userAlreadyExists(
 ): AsyncValidatorFn {
   return (control: AbstractControl): Observable<any> => {
     return signupService
-      .verifyExistingUser(control.value)
+      .verifyExistingUser(control.get('userName')?.value)
       .pipe(map((result: boolean) => (result ? { userExists: true } : null)));
   };
 }
