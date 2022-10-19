@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { LocalstorageService } from './../../services/localstorage/localstorage.service';
 import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
+import { faCat } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,8 @@ export class HeaderComponent implements OnInit {
     private localstorageService: LocalstorageService,
     private router: Router
   ) {}
-  user$ = of(JSON.parse(this.localstorageService.getLSByKey('loggedUser')));
+  faCat = faCat;
+  user$ = this.localstorageService.getObservableOfLastEnteredKey();
   ngOnInit(): void {}
   logout(): void {
     this.localstorageService.deleteLSByKey('loggedUser');

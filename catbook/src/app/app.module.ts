@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FooterModule } from './components/footer/footer.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +17,9 @@ import { HeaderComponent } from './components/header/header.component';
     HomeModule,
     AppRoutingModule,
     HttpClientModule,
+    FontAwesomeModule,
     HeaderModule,
+    FooterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

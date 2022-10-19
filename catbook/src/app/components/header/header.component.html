@@ -1,17 +1,23 @@
 <header class="sticky-top">
   <nav class="navbar navbar-light bg-white">
-    <a class="navbar-brand">Catbook</a>
+    <a class="navbar-brand">
+      <fa-icon [icon]="faCat"></fa-icon>
+      Catbook
+    </a>
     <div *ngIf="user$ | async as user">
-      <div *ngIf="user.fname; else notlogged">
+      <div class="logged" *ngIf="user.fname; else notlogged">
         <i class="fa fa-user-circle mr-1"></i>
-        <a class="mr-1">{{ user.fname }}</a>
+        <a class="navbar-text mr-1">{{ user.fname }}</a>
         <a (click)="logout()">Logout</a>
       </div>
     </div>
   </nav>
-  <ng-template #notlogged>
+  <ng-template #notlogged class="notlogged">
     <span class="navbar-text">
       <a [routerLink]="['']">Login</a>
+    </span>
+    <span class="navbar-text">
+      <a routerLink="home/signup">Signup</a>
     </span>
   </ng-template>
 </header>

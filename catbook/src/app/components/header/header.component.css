@@ -1,0 +1,8 @@
+.navbar-text {
+  margin-right: 2vh;
+}
+.logged a {
+  cursor: pointer;
+  margin-right: 2vh;
+  text-decoration: none;
+}
