@@ -32,12 +32,19 @@
       "userName": "duardo",
       "password": "123",
       "passwordconf": "123"
+    },
+    {
+      "email": "leo@12123.com",
+      "fname": "dddasasdsaasdsasad",
+      "userName": "verma",
+      "password": "Leonardo01@",
+      "passwordconf": "Leonardo01@"
     }
   ],
   "loggedUser": {
-    "userName": "leofrio",
-    "password": "12345678",
-    "fname": "leonardo",
-    "email": "leofrio1@gmail.com"
+    "userName": "verma",
+    "password": "Leonardo01@",
+    "fname": "dddasasdsaasdsasad",
+    "email": "leo@12123.com"
   }
 }

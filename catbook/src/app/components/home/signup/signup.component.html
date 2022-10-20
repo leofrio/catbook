@@ -76,6 +76,14 @@
     ></app-message>
     <app-message
       *ngIf="
+        newUserForm.errors?.['notStrongPassword'] &&
+        newUserForm.get('password')?.touched
+      "
+      message="password must have at least: one lowercase letter, one uppercase letter,be at least 8 characters long,
+      one digit(0-9) and one special character(@!#$%¨&*)"
+    ></app-message>
+    <app-message
+      *ngIf="
         newUserForm.errors?.['sameUserPassword'] &&
         newUserForm.get('password')?.touched && newUserForm.get('userName')?.touched
       "

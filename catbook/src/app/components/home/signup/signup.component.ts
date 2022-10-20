@@ -6,6 +6,7 @@ import { SingupService } from '../../services/signup/singup.service';
 import userAlreadyExists from '../../util/asyncValidators/userAlreadyExists.validator';
 import checkPasswords from '../../util/validators/checkPasswords.validator';
 import sameUserPassword from '../../util/validators/sameUserPassword.validator';
+import strongPassword from '../../util/validators/strongPassword.validator';
 
 @Component({
   selector: 'app-signup',
@@ -37,7 +38,7 @@ export class SignupComponent implements OnInit {
       passwordconf: ['', [Validators.required]],
     },
     {
-      validators: [checkPasswords, sameUserPassword],
+      validators: [checkPasswords, sameUserPassword, strongPassword],
       asyncValidators: [userAlreadyExists(this.signUpService)],
     }
   );
