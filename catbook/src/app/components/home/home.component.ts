@@ -7,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   constructor() {}
+  displayLogin: boolean = true;
+  displaySignup: boolean = false;
+  goToLogin(event: boolean) {
+    this.displaySignup = !event;
+    this.displayLogin = event;
+  }
+  goToSignup(event: boolean) {
+    this.displayLogin = !event;
+    this.displaySignup = event;
+  }
 
   ngOnInit(): void {}
 }

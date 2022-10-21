@@ -4,7 +4,7 @@ import { AnimalsListComponent } from './animals-list/animals-list.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'animals',
     component: AnimalsListComponent,
   },
 ];

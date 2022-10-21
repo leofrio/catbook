@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalstorageService } from '../../services/localstorage/localstorage.service';
 import { authenticationService } from './services/authentication/authentication.service';
@@ -16,6 +16,11 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private localstorageService: LocalstorageService
   ) {}
+  @Output() gotoSignup: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  changeComponent() {
+    this.gotoSignup.emit(true);
+  }
 
   login(): void {
     //laoding=true

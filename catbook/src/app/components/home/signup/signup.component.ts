@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
@@ -19,7 +19,11 @@ export class SignupComponent implements OnInit {
     private signUpService: SingupService,
     private router: Router
   ) {}
+  @Output() goToLogin: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  changeComponent() {
+    this.goToLogin.emit(true);
+  }
   signUp(): void {
     const newUser = this.newUserForm.getRawValue() as User;
     this.signUpService.registerNewUser(newUser).subscribe((res) => {
