@@ -46,12 +46,19 @@
       "userName": "beldo",
       "password": "Leonardo01@",
       "passwordconf": "Leonardo01@"
+    },
+    {
+      "email": "213123123@hotmail.com",
+      "fname": "dddasasdsaasdsasad",
+      "userName": "12312",
+      "password": "Leonardo01@",
+      "passwordconf": "Leonardo01@"
     }
   ],
   "loggedUser": {
-    "userName": "beldo",
-    "password": "Leonardo01@",
-    "fname": "2131312312",
-    "email": "leofrio1@gmail.com"
+    "userName": "arnaldo",
+    "password": "123",
+    "fname": "arnaldo",
+    "email": "21313@sdsad.com"
   }
 }

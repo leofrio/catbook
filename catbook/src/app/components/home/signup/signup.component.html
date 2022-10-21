@@ -1,129 +1,135 @@
-<h4 class="text-center">Sing up now and show your cat to the world!</h4>
-<form class="form mt-4" [formGroup]="newUserForm" (submit)="signUp()">
-  <div class="form-group">
-    <input
-      placeholder="please type your email"
-      class="form-control"
-      formControlName="email"
-      name="email"
-      type="email"
-    />
-    <app-message
-      *ngIf="
+<div *ngIf="!loading; else spinner">
+  <h4 class="text-center">Sing up now and show your cat to the world!</h4>
+  <form class="form mt-4" [formGroup]="newUserForm" (submit)="signUp()">
+    <div class="form-group">
+      <input
+        placeholder="please type your email"
+        class="form-control"
+        formControlName="email"
+        name="email"
+        type="email"
+      />
+      <app-message
+        *ngIf="
         newUserForm.get('email')?.errors?.['required'] &&
         newUserForm.get('email')?.touched
       "
-      message="email is required"
-    ></app-message>
-    <app-message
-      *ngIf="newUserForm.get('email')?.errors?.['email'] &&
+        message="email is required"
+      ></app-message>
+      <app-message
+        *ngIf="newUserForm.get('email')?.errors?.['email'] &&
       newUserForm.get('email')?.touched"
-      message="please input a valid email"
-    ></app-message>
-  </div>
-  <div class="form-group">
-    <input
-      placeholder="please type your full name"
-      class="form-control"
-      formControlName="fname"
-      name="fullName"
-    />
-    <app-message
-      *ngIf="
+        message="please input a valid email"
+      ></app-message>
+    </div>
+    <div class="form-group">
+      <input
+        placeholder="please type your full name"
+        class="form-control"
+        formControlName="fname"
+        name="fullName"
+      />
+      <app-message
+        *ngIf="
         newUserForm.get('fname')?.errors?.['required'] &&
         newUserForm.get('fname')?.touched
       "
-      message="name is required"
-    ></app-message>
-    <app-message
-      *ngIf="newUserForm.get('fname')?.touched && newUserForm.get('fname')?.errors?.['minlength']"
-      message="full name must have at least 4 digits"
-    ></app-message>
-  </div>
-  <div class="form-group">
-    <input
-      placeholder="please choose a username"
-      class="form-control"
-      formControlName="userName"
-      name="userName"
-    />
-    <app-message
-      *ngIf="
+        message="name is required"
+      ></app-message>
+      <app-message
+        *ngIf="newUserForm.get('fname')?.touched && newUserForm.get('fname')?.errors?.['minlength']"
+        message="full name must have at least 4 digits"
+      ></app-message>
+    </div>
+    <div class="form-group">
+      <input
+        placeholder="please choose a username"
+        class="form-control"
+        formControlName="userName"
+        name="userName"
+      />
+      <app-message
+        *ngIf="
         newUserForm.get('userName')?.errors?.['required'] &&
         newUserForm.get('userName')?.touched
       "
-      message="username is required"
-    ></app-message>
-    <app-message
-      *ngIf="newUserForm.errors?.['userExists'] && newUserForm.get('userName')?.touched"
-      message="That username is taken please try another one"
-    ></app-message>
-  </div>
-  <div class="form-group">
-    <input
-      type="password"
-      placeholder="please type a password"
-      name="password"
-      formControlName="password"
-      class="form-control"
-    />
-    <app-message
-      *ngIf="
+        message="username is required"
+      ></app-message>
+      <app-message
+        *ngIf="newUserForm.errors?.['userExists'] && newUserForm.get('userName')?.touched"
+        message="That username is taken please try another one"
+      ></app-message>
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        placeholder="please type a password"
+        name="password"
+        formControlName="password"
+        class="form-control"
+      />
+      <app-progress-bar></app-progress-bar>
+      <app-message
+        *ngIf="
         newUserForm.get('password')?.errors?.['required'] &&
         newUserForm.get('password')?.touched
       "
-      message="password is required"
-    ></app-message>
-    <app-message
-      *ngIf="
+        message="password is required"
+      ></app-message>
+      <app-message
+        *ngIf="
         newUserForm.errors?.['notStrongPassword'] &&
-        newUserForm.get('password')?.touched
+        newUserForm.get('password')?.dirty
       "
-      message="password must have at least: one lowercase letter, one uppercase letter,be at least 8 characters long,
+        message="password must have at least: one lowercase letter, one uppercase letter,be at least 8 characters long,
       one digit(0-9) and one special character(@!#$%¨&*)"
-    ></app-message>
-    <app-message
-      *ngIf="
+      ></app-message>
+      <app-message
+        *ngIf="
         newUserForm.errors?.['sameUserPassword'] &&
         newUserForm.get('password')?.touched && newUserForm.get('userName')?.touched
       "
-      message="your password cant be the same as your username!"
-    ></app-message>
-  </div>
-  <div class="form-group">
-    <input
-      type="password"
-      placeholder="confirm your password"
-      name="passwordConfirm"
-      formControlName="passwordconf"
-      class="form-control"
-    />
-    <app-message
-      *ngIf="
+        message="your password cant be the same as your username!"
+      ></app-message>
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        placeholder="confirm your password"
+        name="passwordConfirm"
+        formControlName="passwordconf"
+        class="form-control"
+      />
+      <app-message
+        *ngIf="
         newUserForm.get('passwordconf')?.errors?.['required'] &&
         newUserForm.get('passwordconf')?.touched
       "
-      message="password confirmation is required "
-    ></app-message>
-  </div>
-  <app-message
-    *ngIf="newUserForm.get('password')?.touched &&
+        message="password confirmation is required "
+      ></app-message>
+    </div>
+    <app-message
+      *ngIf="newUserForm.get('password')?.touched &&
         newUserForm.get('passwordconf')?.touched &&
         newUserForm.errors?.['notEqualPasswords']"
-    message="passwords dont match!"
-  ></app-message>
-  <div class="d-grid">
-    <button
-      [disabled]="newUserForm.invalid"
-      type="submit"
-      class="btn btn-primary"
-    >
-      Sign Up!
+      message="passwords dont match!"
+    ></app-message>
+    <div class="d-grid">
+      <button
+        [disabled]="newUserForm.invalid"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Sign Up!
+      </button>
+    </div>
+  </form>
+  <p>
+    Already a user?<button class="buttonToLink" (click)="changeComponent()">
+      Login!
     </button>
-  </div>
-</form>
-<p>
-  Already a user?<button class="buttonToLink" (click)="changeComponent()">
-    Login!
-  </button>
-</p>
+  </p>
+</div>
+<ng-template class="mt-4" #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

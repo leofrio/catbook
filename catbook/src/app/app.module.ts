@@ -1,3 +1,4 @@
+import { SpinnerModule } from './components/template/spinner/spinner.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,7 +9,6 @@ import { AnimalsModule } from './components/animals/animals.module';
 import { HomeModule } from './components/home/home.module';
 import { FooterModule } from './components/template/footer/footer.module';
 import { HeaderModule } from './components/template/header/header.module';
-import { ToastModule } from './components/template/toast/toast.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,8 +20,8 @@ import { ToastModule } from './components/template/toast/toast.module';
     HttpClientModule,
     FontAwesomeModule,
     HeaderModule,
-    ToastModule,
     FooterModule,
+    SpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

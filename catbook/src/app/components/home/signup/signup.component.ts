@@ -1,12 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import userAlreadyExists from 'src/util/asyncValidators/userAlreadyExists.validator';
+import checkPasswords from 'src/util/validators/checkPasswords.validator';
+import sameUserPassword from 'src/util/validators/sameUserPassword.validator';
+import strongPassword from 'src/util/validators/strongPassword.validator';
 import { User } from '../../models/user';
 import { SingupService } from '../../services/signup/singup.service';
-import userAlreadyExists from '../../util/asyncValidators/userAlreadyExists.validator';
-import checkPasswords from '../../util/validators/checkPasswords.validator';
-import sameUserPassword from '../../util/validators/sameUserPassword.validator';
-import strongPassword from '../../util/validators/strongPassword.validator';
 
 @Component({
   selector: 'app-signup',
@@ -16,6 +16,8 @@ import strongPassword from '../../util/validators/strongPassword.validator';
 export class SignupComponent implements OnInit {
   showSucessToast = false;
   showFailureToast = false;
+  loading: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private signUpService: SingupService,
@@ -27,8 +29,10 @@ export class SignupComponent implements OnInit {
     this.goToLogin.emit(true);
   }
   signUp(): void {
+    this.loading = true;
     const newUser = this.newUserForm.getRawValue() as User;
     this.signUpService.registerNewUser(newUser).subscribe((res) => {
+      this.loading = false;
       console.log('user:');
       console.log(res);
       console.log(' was registered');

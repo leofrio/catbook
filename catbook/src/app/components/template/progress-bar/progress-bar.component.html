@@ -1,0 +1,13 @@
+<div style="display: flex; flex-direction: row; text-align: center">
+  <div class="progress">
+    <div
+      [class]="'progress-bar active ' + barType"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [attr.aria-valuenow]="currentVal"
+      [style.width]="currentVal + '%'"
+    ></div>
+  </div>
+  <div style="margin-top: auto; margin-bottom: auto">{{ barMessage }}</div>
+</div>

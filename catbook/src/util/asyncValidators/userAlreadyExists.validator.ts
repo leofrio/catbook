@@ -1,6 +1,6 @@
 import { AsyncValidatorFn, AbstractControl } from '@angular/forms';
 import { Observable, map } from 'rxjs';
-import { SingupService } from '../../services/signup/singup.service';
+import { SingupService } from 'src/app/components/services/signup/singup.service';
 
 export default function userAlreadyExists(
   signupService: SingupService

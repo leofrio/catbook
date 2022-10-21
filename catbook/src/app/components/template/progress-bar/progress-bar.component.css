@@ -1,0 +1,10 @@
+.progress {
+  height: 15px;
+  width: 50%;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  background-color: transparent;
+  margin-left: 8%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}

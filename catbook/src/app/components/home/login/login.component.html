@@ -1,54 +1,49 @@
-<app-toast
-  *ngIf="showFailureToast"
-  [showsToast]="showFailureToast"
-  message="invalid login or password"
-></app-toast>
-<app-toast
-  *ngIf="showSucessToast"
-  [showsToast]="showSucessToast"
-  message="Sucessfully logged in!"
-></app-toast>
-<h4 class="text-center">Login</h4>
-<form class="form mt-4" (ngSubmit)="login()" #loginForm="ngForm">
-  <div class="form-group">
-    <input
-      class="form-control"
-      placeholder="username"
-      [(ngModel)]="userName"
-      name="userName"
-      #userNameInput="ngModel"
-      required
-    />
-    <app-message
-      *ngIf="userNameInput.invalid && userNameInput.touched"
-      message="username Required"
-    ></app-message>
-  </div>
-  <div class="form-group">
-    <input
-      class="form-control"
-      type="password"
-      placeholder="password"
-      [(ngModel)]="password"
-      name="password"
-      #passwordInput="ngModel"
-      required
-    />
-    <app-message
-      *ngIf="passwordInput.invalid && passwordInput.touched"
-      message="password Required"
-    ></app-message>
-  </div>
-  <button
-    type="submit"
-    class="btn btn-primary col-md-12"
-    [disabled]="loginForm.invalid"
-  >
-    Login
-  </button>
-</form>
-<p>
-  not a user?<button class="buttonToLink" (click)="changeComponent()">
-    Sign Up!
-  </button>
-</p>
+<div *ngIf="!loading; else spinner">
+  <h4 class="text-center">Login</h4>
+  <form class="form mt-4" (ngSubmit)="login()" #loginForm="ngForm">
+    <div class="form-group">
+      <input
+        class="form-control"
+        placeholder="username"
+        [(ngModel)]="userName"
+        name="userName"
+        #userNameInput="ngModel"
+        required
+      />
+      <app-message
+        *ngIf="userNameInput.invalid && userNameInput.touched"
+        message="username Required"
+      ></app-message>
+    </div>
+    <div class="form-group">
+      <input
+        class="form-control"
+        type="password"
+        placeholder="password"
+        [(ngModel)]="password"
+        name="password"
+        #passwordInput="ngModel"
+        required
+      />
+      <app-message
+        *ngIf="passwordInput.invalid && passwordInput.touched"
+        message="password Required"
+      ></app-message>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary col-md-12"
+      [disabled]="loginForm.invalid"
+    >
+      Login
+    </button>
+  </form>
+  <p>
+    not a user?<button class="buttonToLink" (click)="changeComponent()">
+      Sign Up!
+    </button>
+  </p>
+</div>
+<ng-template class="d-flex justify-content-center" #spinner>
+  <app-spinner></app-spinner>
+</ng-template>
