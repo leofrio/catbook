@@ -40,16 +40,24 @@
         <h6 class="text-uppercase font-weight-bold mb-4">Company</h6>
         <ul class="list-unstyled mb-0">
           <li class="mb-2">
-            <a [routerLink]="['']" class="text-muted">Login</a>
+            <button (click)="goToLogin()" class="text-muted buttonToLink">
+              Login
+            </button>
           </li>
           <li class="mb-2">
-            <a routerLink="home/signup" class="text-muted">Register</a>
+            <button (click)="goToLogin()" class="text-muted buttonToLink">
+              Register
+            </button>
           </li>
           <li class="mb-2">
-            <a [routerLink]="['']" class="text-muted">Wishlist</a>
+            <button (click)="goToLogin()" class="text-muted buttonToLink">
+              Wishlist
+            </button>
           </li>
           <li class="mb-2">
-            <a [routerLink]="['']" class="text-muted">Our Products</a>
+            <button (click)="goToLogin()" class="text-muted buttonToLink">
+              Our Products
+            </button>
           </li>
         </ul>
       </div>
