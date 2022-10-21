@@ -18,6 +18,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
   logout(): void {
     this.localstorageService.deleteLSByKey('loggedUser');
-    this.router.navigate(['']);
+    this.router.navigate(['home']);
   }
 }

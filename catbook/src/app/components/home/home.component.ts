@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {
+    console.log(this.router.getCurrentNavigation()?.extras.state?.['signup']);
+    if (this.router.getCurrentNavigation()?.extras.state?.['signup']) {
+      this.goToSignup(
+        this.router.getCurrentNavigation()?.extras.state?.['signup']
+      );
+    }
+    if (this.router.getCurrentNavigation()?.extras.state?.['login']) {
+      this.goToLogin(
+        this.router.getCurrentNavigation()?.extras.state?.['login']
+      );
+    }
+  }
   displayLogin: boolean = true;
   displaySignup: boolean = false;
   goToLogin(event: boolean) {

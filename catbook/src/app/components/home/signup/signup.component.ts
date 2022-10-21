@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
       console.log('user:');
       console.log(res);
       console.log(' was registered');
-      this.router.navigate(['']);
+      this.changeComponent();
     });
   }
   newUserForm: FormGroup = this.formBuilder.group(
