@@ -14,6 +14,8 @@ import strongPassword from '../../util/validators/strongPassword.validator';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
+  showSucessToast = false;
+  showFailureToast = false;
   constructor(
     private formBuilder: FormBuilder,
     private signUpService: SingupService,

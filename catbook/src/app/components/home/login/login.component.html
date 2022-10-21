@@ -1,3 +1,13 @@
+<app-toast
+  *ngIf="showFailureToast"
+  [showsToast]="showFailureToast"
+  message="invalid login or password"
+></app-toast>
+<app-toast
+  *ngIf="showSucessToast"
+  [showsToast]="showSucessToast"
+  message="Sucessfully logged in!"
+></app-toast>
 <h4 class="text-center">Login</h4>
 <form class="form mt-4" (ngSubmit)="login()" #loginForm="ngForm">
   <div class="form-group">

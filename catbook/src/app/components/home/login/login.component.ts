@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { timer } from 'rxjs';
 import { LocalstorageService } from '../../services/localstorage/localstorage.service';
 import { authenticationService } from './services/authentication/authentication.service';
 
@@ -11,6 +12,8 @@ import { authenticationService } from './services/authentication/authentication.
 export class LoginComponent implements OnInit {
   userName: string = '';
   password: string = '';
+  showSucessToast = false;
+  showFailureToast = false;
   constructor(
     private authService: authenticationService,
     private router: Router,
@@ -18,10 +21,20 @@ export class LoginComponent implements OnInit {
   ) {}
   @Output() gotoSignup: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  changeComponent() {
+  changeComponent(): void {
     this.gotoSignup.emit(true);
   }
-
+  showToastSucess(sucess: boolean): void {
+    if (sucess) {
+      this.showSucessToast = true;
+      timer(2000);
+      this.showSucessToast = false;
+    } else {
+      this.showFailureToast = true;
+      timer(2000);
+      this.showFailureToast = false;
+    }
+  }
   login(): void {
     //laoding=true
     console.log('login: ' + this.userName);
@@ -31,11 +44,13 @@ export class LoginComponent implements OnInit {
         if (typeof req !== 'undefined') {
           req.subscribe((reqaux: Object) => {
             this.localstorageService.addLSToken('loggedUser', reqaux);
-            //lkoading=false
+            this.showToastSucess(true);
+            timer(2500);
             this.router.navigate(['animals']);
           });
         } else {
-          alert('invalid username or password');
+          this.showToastSucess(false);
+          //alert('invalid username or password');
         }
       },
       (error) => {

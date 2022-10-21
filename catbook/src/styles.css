@@ -8,3 +8,9 @@
   background: none;
   text-decoration: underline;
 }
+app-root {
+  z-index: 1;
+}
+.toast-class {
+  z-index: 2;
+}
