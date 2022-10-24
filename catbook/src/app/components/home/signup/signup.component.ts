@@ -17,12 +17,61 @@ export class SignupComponent implements OnInit {
   showSucessToast = false;
   showFailureToast = false;
   loading: boolean = false;
-
+  passwordValue: string = '0';
+  passwordMessage: string = 'weak';
+  passwordType: string = 'bg-danger';
   constructor(
     private formBuilder: FormBuilder,
     private signUpService: SingupService,
     private router: Router
   ) {}
+  checkPValue(password: string): void {
+    let valueInInt: number = 0;
+    if (password.length <= 8) {
+      valueInInt += password.length * 2.5;
+    } else {
+      valueInInt += 20;
+    }
+    if (password.match('(?=.*[A-Z])')) {
+      valueInInt += 20;
+    }
+    if (password.match('(?=.*[0-9])')) {
+      valueInInt += 20;
+    }
+    if (password.match('(?=.*[^A-Za-z0-9])')) {
+      valueInInt += 20;
+    }
+    if (password.match('(?=.*[a-z])')) {
+      valueInInt += 20;
+    }
+    this.changeProgressBar(valueInInt);
+  }
+  changeProgressBar(pvalue: number): void {
+    if (pvalue > 100) {
+      pvalue = 100;
+    }
+    if (pvalue < 33) {
+      this.passwordValue = pvalue.toString();
+      this.passwordType = 'bg-danger';
+      this.passwordMessage = 'Weak';
+    }
+    if (pvalue >= 33 && pvalue < 66) {
+      this.passwordValue = pvalue.toString();
+      this.passwordType = 'bg-warning';
+      this.passwordMessage = 'Okay';
+    }
+    if (pvalue >= 66 && pvalue < 99) {
+      this.passwordValue = pvalue.toString();
+      this.passwordType = 'bg-info';
+      this.passwordMessage = 'Good';
+    }
+    if (pvalue > 99) {
+      this.passwordValue = pvalue.toString();
+      this.passwordType = 'bg-success';
+      this.passwordMessage = 'Strong';
+    }
+  }
+
   @Output() goToLogin: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   changeComponent() {

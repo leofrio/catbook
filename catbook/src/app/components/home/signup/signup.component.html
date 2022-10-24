@@ -67,8 +67,14 @@
         name="password"
         formControlName="password"
         class="form-control"
+        #password
+        (input)="checkPValue(password.value)"
       />
-      <app-progress-bar></app-progress-bar>
+      <app-progress-bar
+        [currentVal]="passwordValue"
+        [barType]="passwordType"
+        [barMessage]="passwordMessage"
+      ></app-progress-bar>
       <app-message
         *ngIf="
         newUserForm.get('password')?.errors?.['required'] &&
